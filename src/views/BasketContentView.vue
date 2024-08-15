@@ -9,51 +9,79 @@
     <div class="spinner-grow text-dark mx-1 spinner-grow-sm"></div>
   </div>
   <div class="after-loading" v-else>
-    <div class="container mx-auto my-5 h4 text-center" v-show="total !== 0">
-      {{ "Total Amount  " + total + " AED" }}
-    </div>
-    <div class="added" v-if="fakeList.length !== 0">
-      <div class="my-4 h6 w-75 text-center mx-auto">
-        do you want to add this ?
-        <button class="btn w-25 mx-4 btn-dark" @click="updateList">Yes</button>
-      </div>
-      <div class="d-flex justify-content-center w-100 mx-auto">
-        <div
-          class="w-25 h-25 row justify-content-start"
-          v-for="(item, i) in fakeList"
-          :key="i"
-        >
-          <img :src="item.image" class="col-2" />
-          <button
-            class="btn btn-secondary col-2 mt-2 btn-changed text-center"
-            @click="fakeList.pop(i)"
-          >
-            remove
-          </button>
-        </div>
-      </div>
-    </div>
-    <ul class="list-group w-75 mx-auto">
+    <ul class="list-group w-100 mx-auto">
       <li
-        class="d-flex justify-content-between list-group-item my-3 shadow-sm"
+        class="d-flex justify-content-center flex-column flex-lg-row align-items-center list-group-item my-3 shadow rounded-5 w-100 h-100 px-3"
         v-for="(item, i) in basket"
         :key="i"
       >
-        <div class="w-25 h-25 position-relative">
-          <img :src="item.image" class="col-4" />
+        <div
+          class="d-flex justify-content-lg-start justify-content-between col-12 col-lg-2"
+        >
+          <button
+            class="btn-close shadow-none fs-5 col-1 float-left me-5 align-self-center"
+            @click="
+              basket.splice(i, 1) && this.$store.state.BasketList.splice(i, 1)
+            "
+          ></button>
+          <i
+            @click="heartRed[i] = 1 ? heartRed[i] == 0 : 0"
+            class="fa-heart fs-1 heartIcon col-1 align-self-center"
+            :class="{
+              fas: heartRed[i] == 1,
+              far: heartRed[i] == 0,
+              'text-danger': heartRed[i] == 1,
+            }"
+          ></i>
         </div>
         <div
-          class="col-4 text-center mt-xl-4 mt-sm-3 price"
-          style="color: #e6ca69"
+          class="d-flex flex-coulmn flex-md-row justify-content-center align-items-center col-12 col-lg-8 col-xl-8"
         >
-          {{ "AED  " + item.price }}
+          <div class="col-4">
+            <img :src="item.image" class="align-self-center w-50 h-50" />
+          </div>
+          <div
+            class="col-xl-4 col-6 col-md-4 text-center mt-xl-4 mt-sm-3 d-flex justify-content-between flex-column"
+          >
+            <span class="price" style="color: #e6ca69"> {{ item.title }}</span>
+            <div
+              class="quantity d-flex justify-content-between flex-column my-3 col-12"
+            >
+              <span class="my-2">quantity</span>
+              <div
+                class="d-flex justify-content-center col-xl-6 col-12 mx-auto"
+              >
+                <button
+                  class="btn btn-white w-25 border-1 border-dark fs-3"
+                  @click="counter[i]--"
+                  :disabled="counter <= 0"
+                >
+                  -
+                </button>
+                <input
+                  type="text"
+                  v-model="counter[i]"
+                  class="w-25 fs-3 text-center border-0"
+                />
+                <button
+                  class="btn btn-white w-25 border-1 border-dark fs-3"
+                  @click="counter[i]++, addOne"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-
         <button
-          class="btn btn-dark shadow-0 rounded-0 text-center mt-xl-2 mt-md-4 mt-sm-2 mt-lg-3 btn-changed"
-          @click="fakeList.push({ id: item.id, image: item.image })"
+          class="btn btn-dark px-4 py-1 rounded-3 h-25 col-sm-6 col-12 col-md-4 col-lg-2 col-xl-2 my-xl-0 my-3"
         >
-          <i class="fa-solid fa-circle-plus mx-1"></i>add one
+          <span class="mx-3">go to pay</span>
+          <div
+            class="spinner-border spinner-border-sm text-white"
+            v-if="addItem == true"
+          ></div>
+          <span v-else>{{ "  " + counter[i] * item.price }}</span>
         </button>
       </li>
     </ul>
@@ -61,7 +89,12 @@
 </template>
 
 <script>
+// import RatingComp from "@/components/RatingComp";
+
 export default {
+  components: {
+    // RatingComp,
+  },
   mounted() {
     this.fetchData();
     setTimeout(() => {
@@ -72,22 +105,30 @@ export default {
   data() {
     return {
       basket: [],
-      total: null,
-      counter: 0,
+      total: 0,
+      counter: [],
+      heartRed: [],
       isLoading: true,
       fakeList: [],
+      addItem: false,
     };
   },
   methods: {
     async fetchData() {
       await this.$store.state.BasketList.forEach((element) => {
-        fetch(`https://fakestoreapi.com/products/${element}`)
+        this.heartRed.push(0);
+        this.counter.push(element.counter);
+        fetch(`https://fakestoreapi.com/products/${element.id}`)
           .then((result) => result.json())
           .then((json) => {
             this.basket.push(json);
-            this.total += json.price;
           });
       });
+    },
+    addOne() {
+      setTimeout(() => {
+        this.addItem = true;
+      }, 2000);
     },
     counterItem(id) {
       this.basket.filter((item) => {
@@ -132,7 +173,9 @@ nav {
     width: 50%;
     height: 50%;
   }
-
+  .heartIcon {
+    cursor: pointer;
+  }
   .btn-changed {
     width: 50%;
     height: 50%;

@@ -1,14 +1,15 @@
 <template>
   <div class="container-fluid" style="background-color: black">
-    <div class="row d-flex justify-content-around flex-wrap">
+    <div class="row d-flex justify-content-center flex-wrap">
       <div
-        class="card border-3 shadow col-xl-6 mx-3 col-sm-10 col-lg-8 m-3 rounded-3 p-0 h-100 mt-5"
+        class="card border-3 shadow col-xl-3 col-xxl-3 mx-3 col-sm-10 col-md-5 col-lg-5 rounded-4 p-1 mt-3"
         v-for="(womenCloth, i) in WomensClothings"
         :key="i"
-        style="background-color: black; border-color: #e6ca69"
+        @click="showDetiels(womenCloth.id)"
+        style="background-color: black"
       >
         <div class="d-flex flex-column justify-content-between">
-          <div class="card-image-top w-100 h-50 bg-white">
+          <div class="card-image-top w-100 h-75 bg-white rounded-3">
             <img
               :src="womenCloth.image"
               alt=""
@@ -17,21 +18,13 @@
               height="170"
             />
           </div>
-          <div class="card-body h-50" style="background-color: black">
+          <div
+            class="card-body d-flex flex-column justify-content-between h-50"
+            style="background-color: black"
+          >
             <div class="card-title my-4 text-white">
               {{ womenCloth.title }}
             </div>
-
-            <div class="mt-4" style="color: #e6ca69">
-              AED {{ " " + womenCloth.price }}
-            </div>
-            <button
-              class="py-1 btn rounded-0 border-1 mt-1 text-white"
-              style="border-color: #e6ca69; padding: 0px 70px"
-              @click="showDetiels(womenCloth.id)"
-            >
-              SEE MORE
-            </button>
           </div>
         </div>
       </div>
@@ -67,8 +60,21 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 .container-fluid {
   text-align: center;
+}
+@media (max-width: 767.98px) {
+  .container-fluid {
+    max-width: 100%;
+  }
+}
+.card {
+  transition-duration: 1s;
+}
+.card:hover {
+  cursor: pointer;
+  translate: 10px 10px;
+  border-color: #e6ca69;
 }
 </style>

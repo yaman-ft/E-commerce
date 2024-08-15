@@ -1,7 +1,6 @@
 <template>
   <nav
     class="navbar navbar-expand-sm justify-content-between pe-5"
-    :class="{ 'fixed-top': isFixed }"
     style="
       border-bottom: 16px solid #e6ca69;
       background-color: black;
@@ -23,7 +22,7 @@
       <div class="d-flex justify-content-end">
         <div class="w-50 position-relative me-5">
           <i
-            class="fas fa-search position-absolute text-center translate-middle-y"
+            class="fas fs-6 fa-search position-absolute text-center translate-middle-y"
             :class="{ 'text-dark': isInput, 'text-white': !isInput }"
             style="left: 50%; margin-top: 4.5%"
             @click="(isInput = true), (border = 1), (color = '#e6ca69')"
@@ -102,12 +101,12 @@
           >
         </li>
         <li class="nav-item mx-3 mt-4 bg">
-          <a href="#" class="nav-link navBarLink" @click="scrlTo(1370)"
+          <a href="#" class="nav-link navBarLink" @click="scrlTo(1600)"
             >Media Center</a
           >
         </li>
         <li class="nav-item mx-3 mt-4 bg">
-          <a href="#" class="nav-link navBarLink" @click="scrlTo(2900)"
+          <a href="#" class="nav-link navBarLink" @click="scrlTo(3000)"
             >Contact Us</a
           >
         </li>
@@ -167,7 +166,9 @@
             class="d-flex flex-column justify-content-around col-sm-12 col-lg-4 col-md-6"
           >
             <span class="nav-item mx-3 mt-4">
-              <RouterLink to="/" class="nav-link navBarLink">Home</RouterLink>
+              <RouterLink to="/" class="nav-link navBarLink" id="closeButton"
+                >Home</RouterLink
+              >
             </span>
             <span class="nav-item mx-3 mt-4">
               <a
@@ -294,6 +295,13 @@ export default {
     },
   },
 };
+// document.getElementById("closeButton").addEventListener("click", function () {
+//   var myCollapse = document.getElementById("collapses");
+//   var bsCollapse = new bootstrap.Collapse(myCollapse, {
+//     toggle: false,
+//   });
+//   bsCollapse.hide();
+// });
 </script>
 <style scoped>
 #app {

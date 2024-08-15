@@ -1,5 +1,5 @@
 <template>
-  <div class="d1">
+  <div class="d1 w-auto">
     <div class="container-fluid px-0" style="background-color: black">
       <div class="container">
         <div
@@ -36,10 +36,10 @@
             src="@/assets/Icons/ALMOTTHEDON COMPANY Logo (3)1.png"
             alt=""
             width="300"
-            class="align-self-md-center align-self-lg-start align-self-sm-start ms-sm-5 mt-sm-5 mt-xl-4 mt-lg-0 me-xl-0 me-md-5 ms-lg-2 me-xxl-5 ms-xl-0"
+            class="align-self-md-center align-self-lg-start align-self-sm-start mx-auto ms-sm-5 mt-sm-5 mt-xl-4 mt-lg-0 me-xl-0 me-sm-0 me-md-5 ms-lg-2 me-xxl-5 ms-xl-0 logoImage"
           />
           <h3
-            class="middle-title text-white ms-xxl-4 align-self-center ms-md-5 mb-lg-5 mb-md-1 mb-xl-4 position-absolute ms-lg-1 ms-xl-4"
+            class="middle-title text-white ms-xxl-4 align-self-center mb-sm-0 ms-sm-0 ms-md-5 mb-lg-5 mb-md-1 mb-xl-4 position-absolute ms-lg-1 ms-xl-4 mb-5 ms-3"
           >
             LATEST PRODUCTS
           </h3>
@@ -165,8 +165,8 @@
             height="500"
             style="margin-top: 120px"
           />
-          <div class="col-7 float-lg-end mx-sm-auto mx-xl-0">
-            <h4 class="mx-auto mt-3" style="color: black">
+          <div class="col-7 float-lg-end mx-auto mx-sm-auto mx-xl-0">
+            <h4 class="mx-auto mt-3 imageTitle" style="color: black">
               LUXURY JEWELRY COLLECTION
             </h4>
           </div>
@@ -176,7 +176,7 @@
         class="content col-xl-7 col-lg-9 col-sm-12 m-5 p-5 roboto float-xl-end mx-sm-auto mx-xl-0"
       >
         <h4
-          class="text-white user-select-none text-sm-center text-xl-start lh-base"
+          class="text-white user-select-none text-sm-center text-xl-start lh-base lorem"
         >
           "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet,
           ipsam exercitationem molestiae hic consectetur distinctio magnam qui
@@ -201,8 +201,8 @@
           class="position-absolute top-0 start-0 end-0 bottom-0 w-100 h-100 category"
           style="background-color: rgba(30, 28, 28, 0.667)"
         >
-          <div class="text-center mb-5 pt-sm-3 pt-xl-5 fs-xl-2 fs-sm-6">
-            <div class="fw-normal h1" style="color: #e6ca69; font-size: 75px">
+          <div class="text-center mb-5 pt-sm-3 pt-xl-5 fs-xl-2 fs-sm-6 title">
+            <div class="fw-normal h1 h11" style="color: #e6ca69">
               CATEGORIES
             </div>
           </div>
@@ -247,7 +247,7 @@
         >
           <div class="up w-100 row">
             <div
-              class="d-flex flex-column justify-content-between col-xl-4 float-xl-start mx-sm-auto mx-xl-0 ms-0 col-sm-6"
+              class="d-flex images-footer flex-column justify-content-between col-xl-4 float-xl-start mx-sm-auto mx-xl-0 ms-0 col-sm-6 mx-auto"
             >
               <img
                 class="w-75 h-75 mb-4 me-xl-5 mx-auto"
@@ -311,11 +311,11 @@
               </div>
             </div>
             <div
-              class="col-xl-8 float-xl-end d-flex col-sm-12 flex-sm-wrap flex-xl-nowrap justify-content-between text-white ps-0"
+              class="contentFooter col-xxl-8 float-xl-end d-flex col-sm-12 flex-sm-wrap flex-xl-nowrap justify-content-between text-white"
               style="padding: 7%"
             >
               <div
-                class="d-flex flex-column justify-content-between text-start col-sm-12 col-md-9 col-lg-6 my-sm-2"
+                class="d-flex flex-column justify-content-between text-start col-sm-12 col-md-9 col-lg-5 my-sm-2"
               >
                 <div class="h1 mt-3 footer-items">Home</div>
                 <div class="h4 mt-3 footer-items" style="color: #e6ca69">
@@ -329,7 +329,7 @@
                 </div>
               </div>
               <div
-                class="d-flex flex-wrap flex-sm-column justify-content-between text-start me-xl-5"
+                class="d-flex flex-wrap flex-sm-column justify-content-between col-4 text-start"
               >
                 <div
                   class="h4 mt-3 footer-items"
@@ -361,7 +361,7 @@
                 </div>
               </div>
               <div
-                class="d-flex flex-column justify-content-between text-start ms-xl-5 col-sm-12 col-md-5 col-lg-6"
+                class="d-flex flex-column justify-content-between text-start ms-xl-5 col-sm-12 col-md-5 col-lg-4"
               >
                 <div class="h1 mt-3 footer-items">Contact Us</div>
                 <div class="h4 mt-3 footer-items" style="color: #e6ca69">
@@ -446,6 +446,9 @@ export default {
   color: #e6ca69;
   cursor: pointer;
 }
+.h11 {
+  font-size: 65px;
+}
 .middle-title {
   font-family: "Marcellus", serif;
   font-weight: 400;
@@ -482,6 +485,44 @@ export default {
     .contFooter {
       font-weight: 100;
     }
+  }
+}
+@media (max-width: 575px) {
+  .images-footer {
+    width: 50%;
+  }
+  .contentFooter {
+    padding-left: 50px;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .h11 {
+    font-size: 20px;
+  }
+  .item {
+    height: 120px;
+    width: 120px;
+    font-size: x-small;
+  }
+  .title {
+    font-size: large;
+  }
+  .btn-hover {
+    width: 100%;
+  }
+  .lorem {
+    font-size: medium;
+  }
+  .imageTitle {
+    padding: 0;
+    align-self: center;
+  }
+  .middle-title {
+    font-weight: 200;
+  }
+  .logoImage {
+    width: 200px;
   }
 }
 </style>

@@ -1,14 +1,15 @@
 <template>
   <div class="container-fluid" style="background-color: black">
-    <div class="row d-flex justify-content-around flex-wrap">
+    <div class="row d-flex justify-content-center flex-wrap">
       <div
-        class="card border-3 shadow col-xl-6 mx-3 col-sm-10 col-lg-8 m-3 rounded-3 p-0 h-100 mt-5"
+        class="card border-3 shadow col-xl-3 col-xxl-3 mx-3 col-sm-10 col-md-5 col-lg-5 rounded-4 p-1 mt-3"
         v-for="(electric, i) in ElectricItems"
         :key="i"
-        style="background-color: black; border-color: #e6ca69"
+        style="background-color: black"
+        @click="showDetiels(electric.id)"
       >
-        <div class="d-flex flex-column justify-content-between">
-          <div class="card-image-top w-100 h-50 bg-white">
+        <div class="d-flex flex-column">
+          <div class="card-image-top w-100 h-75 bg-white rounded-3">
             <img
               :src="electric.image"
               alt=""
@@ -17,20 +18,13 @@
               height="170"
             />
           </div>
-          <div class="card-body h-50" style="background-color: black">
+          <div
+            class="card-body d-flex flex-column justify-content-center"
+            style="background-color: black"
+          >
             <div class="card-title my-4 text-white">
               {{ electric.title }}
             </div>
-            <div class="mt-4" style="color: #e6ca69">
-              AED {{ " " + electric.price }}
-            </div>
-            <button
-              class="py-1 btn rounded-0 border-1 mt-1 text-white"
-              style="border-color: #e6ca69; padding: 0px 70px"
-              @click="showDetiels(electric.id)"
-            >
-              SEE MORE
-            </button>
           </div>
         </div>
       </div>
@@ -66,8 +60,16 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 .container-fluid {
   text-align: center;
+}
+.card {
+  transition-duration: 1s;
+}
+.card:hover {
+  cursor: pointer;
+  translate: 10px 10px;
+  border-color: #e6ca69;
 }
 </style>

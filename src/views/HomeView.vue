@@ -1,528 +1,494 @@
 <template>
-  <div class="d1 w-auto">
-    <div class="container-fluid px-0" style="background-color: black">
-      <div class="container">
-        <div
-          class="image-container position-relative w-100 h-100 overflow-hidden"
-        >
-          <img src="@/assets/Images/Header 1.jpg" class="image w-100 h-100" />
-          <div
-            class="overlay position-absolute top-0 start-0 bottom-0 end-0"
-            style="background-color: rgba(30, 28, 28, 0.5)"
-          ></div>
-        </div>
-        <br />
-        <br />
-        <br />
-        <div class="d-flex justify-content-center">
-          <h1
-            class="mx-1 pointOne"
-            :class="{ 'mx-3': thisNUmber == 50 }"
-            style="color: #e6ca69"
-            :style="{ 'font-size': thisNUmber + 'px' }"
-            @click="thisNUmber = 50"
-          >
-            &#8226;
-          </h1>
-          <h1 class="mx-1" style="color: #e6ca69">&#8226;</h1>
-          <h1 class="mx-1" style="color: #e6ca69">&#8226;</h1>
-          <h1 class="mx-1" style="color: #e6ca69">&#8226;</h1>
-          <h1 class="mx-1" style="color: #e6ca69">&#8226;</h1>
-        </div>
-        <div
-          class="d-flex flex-column justify-content-center col-lg-6 col-md-8 col-xs-6 col-xl-4 my-5 mx-auto position-relative mx-auto"
-        >
-          <img
-            src="@/assets/Icons/ALMOTTHEDON COMPANY Logo (3)1.png"
-            alt=""
-            width="300"
-            class="align-self-md-center align-self-lg-start align-self-sm-start mx-auto ms-sm-5 mt-sm-5 mt-xl-4 mt-lg-0 me-xl-0 me-sm-0 me-md-5 ms-lg-2 me-xxl-5 ms-xl-0 logoImage"
-          />
-          <h3
-            class="middle-title text-white ms-xxl-4 align-self-center mb-sm-0 ms-sm-0 ms-md-5 mb-lg-5 mb-md-1 mb-xl-4 position-absolute ms-lg-1 ms-xl-4 mb-5 ms-3"
-          >
-            LATEST PRODUCTS
-          </h3>
-        </div>
-        <div class="d-flex flex-wrap justify-content-center mt-5 roboto">
-          <div class="card col-sm-12 col-md-6 col-lg-4 border-0 mb-4">
-            <div class="card-body" style="background-color: black">
-              <div
-                class="cont bg-white w-100 position-relative"
-                style="height: 60%"
-              >
-                <img
-                  src="@/assets/Icons/heart_10826871.png"
-                  alt=""
-                  class="mt-3 position-absolute top-0 end-0 me-3"
-                  width="35"
-                />
-                <img
-                  src="@/assets/Images/levitating-music-headphones-display.jpg"
-                  alt=""
-                  class="card-image mx-auto"
-                  width="70%"
-                  height="100%"
-                />
-              </div>
-              <div class="card-text my-2 text-white">Head Phone</div>
-              <div class="my-2" style="color: #e6ca69">AED 250</div>
-              <button
-                class="py-1 btn btn-hover rounded-0 border-1 mt-1 text-white"
-                style="border-color: #e6ca69; padding: 0px 70px"
-                @click="GoToCategory('elec')"
-              >
-                SEE MORE
-              </button>
-            </div>
-          </div>
-
-          <div class="card col-sm-12 col-md-6 col-lg-4 border-0 mb-4">
-            <div class="card-body" style="background-color: black">
-              <div
-                class="cont bg-white w-100 position-relative"
-                style="height: 60%"
-              >
-                <img
-                  src="@/assets/Icons/heart_10826871.png"
-                  alt=""
-                  class="mt-3 position-absolute top-0 end-0 me-3"
-                  width="35"
-                />
-                <img
-                  src="@/assets/Images/beautiful-luxury-necklace-jewelry-stand-neck.jpg"
-                  alt=""
-                  class="card-image mx-auto"
-                  width="70%"
-                  height="100%"
-                />
-              </div>
-              <div class="card-text my-2 text-white">Necklace</div>
-              <div class="my-2" style="color: #e6ca69">AED 1500</div>
-              <button
-                class="py-1 btn btn-hover rounded-0 border-1 mt-1 text-white"
-                style="border-color: #e6ca69; padding: 0px 70px"
-                @click="GoToCategory('jewel')"
-              >
-                SEE MORE
-              </button>
-            </div>
-          </div>
-
-          <div class="card col-sm-12 col-md-6 col-lg-4 border-0 mb-4">
-            <div class="card-body" style="background-color: black">
-              <div
-                class="cont bg-white w-100 position-relative"
-                style="height: 60%"
-              >
-                <img
-                  src="@/assets/Icons/heart_10826871.png"
-                  alt=""
-                  class="mt-3 position-absolute top-0 end-0 me-3"
-                  width="35"
-                />
-                <img
-                  src="@/assets/Images/home-appliances-group-white-refrigerator-washing-machine-stove-microwave-oven-vacuum-cleaner-isolated-white-background-3d.jpg"
-                  alt=""
-                  class="card-image mx-auto"
-                  width="70%"
-                  height="100%"
-                />
-              </div>
-              <div class="card-text my-2 text-white">Home Appliances</div>
-              <div class="my-2" style="color: #e6ca69">AED 5000</div>
-              <button
-                class="py-1 btn btn-hover rounded-0 border-1 mt-1 text-white"
-                style="border-color: #e6ca69; padding: 0px 70px"
-                @click="GoToCategory('elec')"
-              >
-                SEE MORE
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="points mb-4 d-flex justify-content-center">
-          <h1 class="mx-1" style="color: #e6ca69">&#8226;</h1>
-          <h1 class="mx-1" style="color: #e6ca69">&#8226;</h1>
-          <h1 class="mx-1" style="color: #e6ca69">&#8226;</h1>
-          <h1 class="mx-1" style="color: #e6ca69">&#8226;</h1>
-          <h1 class="mx-1" style="color: #e6ca69">&#8226;</h1>
-        </div>
-      </div>
-
-      <div
-        class="section w-100"
-        style="margin-top: 200px; height: 68px; background-color: #e6ca69"
-      >
-        <div class="container d-flex justify-content-end position-relative">
-          <img
-            v-if="screen > 1200"
-            class="position-absolute start-0 rounded-2 translate-middle-y"
-            src="@/assets/Images/portrait-young-woman-with-earrings-with-gems-isolated.jpg"
-            alt=""
-            width="430"
-            height="500"
-            style="margin-top: 120px"
-          />
-          <div class="col-7 float-lg-end mx-auto mx-sm-auto mx-xl-0">
-            <h4 class="mx-auto mt-3 imageTitle" style="color: black">
-              LUXURY JEWELRY COLLECTION
-            </h4>
-          </div>
-        </div>
-      </div>
-      <div
-        class="content col-xl-7 col-lg-9 col-sm-12 m-5 p-5 roboto float-xl-end mx-sm-auto mx-xl-0"
-      >
-        <h4
-          class="text-white user-select-none text-sm-center text-xl-start lh-base lorem"
-        >
-          "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet,
-          ipsam exercitationem molestiae hic consectetur distinctio magnam qui
-          nostrum iste non eligendi porro sed perspiciatis quisquam sequi in a,
-          ex doloremque.
-        </h4>
-        <button
-          class="py-3 btn rounded-0 border-1 mt-5 text-white float-xl-start btn-hover"
-          style="border-color: #e6ca69; padding: 0px 20%"
-        >
-          MORE
-        </button>
-      </div>
-      <br />
-      <div class="container position-relative overflow-hidden px-0 w-100 h-100">
-        <img
-          class="header-3 w-100 h-100"
-          src="@/assets/Images/Header 2.jpg"
-          alt=""
-        />
-        <div
-          class="position-absolute top-0 start-0 end-0 bottom-0 w-100 h-100 category"
-          style="background-color: rgba(30, 28, 28, 0.667)"
-        >
-          <div class="text-center mb-5 pt-sm-3 pt-xl-5 fs-xl-2 fs-sm-6 title">
-            <div class="fw-normal h1 h11" style="color: #e6ca69">
-              CATEGORIES
-            </div>
-          </div>
-          <div
-            class="d-flex justify-content-center mt-xl-5 mt-sm-2 pt-5 px-5 text-sm-center"
-          >
-            <div
-              class="w-25 d-flex align-items-center mx-2 item"
-              style="background-color: #e6cb69a4; height: 200px"
-              @click="GoToCategory('elec')"
+  <div style="background: #0a0a0a">
+    <div class="hero-section position-relative overflow-hidden">
+      <img src="@/assets/Images/Header 1.jpg" class="w-100 hero-img" />
+      <div class="hero-overlay">
+        <div class="container h-100 d-flex align-items-center">
+          <div class="hero-text">
+            <h1>ALMOTTHEDON</h1>
+            <p>Premium Collection</p>
+            <router-link to="/category?cat=electronics" class="btn hero-btn"
+              >Shop Now</router-link
             >
-              <span class="text-center w-100 mx-auto">ELECTRONICS</span>
-            </div>
-            <div
-              class="w-25 d-flex align-items-center mx-2 item"
-              style="background-color: #e6cb69a4; height: 200px"
-              @click="GoToCategory('jewel')"
-            >
-              <span class="text-center w-100 mx-auto">JEWELRY</span>
-            </div>
-            <div
-              class="w-25 d-flex align-items-center mx-2 item"
-              style="background-color: #e6cb69a4; height: 200px"
-              @click="GoToCategory('men')"
-            >
-              <span class="text-center w-100 mx-auto">MEN CLOTHING</span>
-            </div>
-            <div
-              class="w-25 d-flex align-items-center mx-2 item"
-              style="background-color: #e6cb69a4; height: 200px"
-              @click="GoToCategory('women')"
-            >
-              <span class="text-center w-100 mx-auto">WOMEN CLOTHING</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container px-0 mt-4">
-        <div class="w-100" style="height: 2px; background-color: #e6ca69"></div>
-        <div
-          class="contFooter w-100 my-4 d-flex flex-column justify-content-between"
-        >
-          <div class="up w-100 row">
-            <div
-              class="d-flex images-footer flex-column justify-content-between col-xl-4 float-xl-start mx-sm-auto mx-xl-0 ms-0 col-sm-6 mx-auto"
-            >
-              <img
-                class="w-75 h-75 mb-4 me-xl-5 mx-auto"
-                src="@/assets/logo2 - Copy.png"
-                alt=""
-                data-bs-toggle="tooltip"
-                data-bs-placement="right"
-                title="ALMOTTHEDON COMPANY"
-              />
-              <div
-                class="d-flex justify-content-xl-start justify-content-sm-center ps-3"
-              >
-                <a
-                  href="https://www.facebook.com"
-                  class="nav-link"
-                  target="_blank"
-                >
-                  <img
-                    class="mx-2"
-                    src="@/assets/Icons/facebook_White.png"
-                    alt=""
-                    width="25"
-                  />
-                </a>
-                <a
-                  href="https://www.youtube.com"
-                  class="nav-link"
-                  target="_blank"
-                >
-                  <img
-                    class="mx-2"
-                    src="@/assets/Icons/Youtube - White .png"
-                    alt=""
-                    width="25"
-                  />
-                </a>
-                <a
-                  href="https://www.instagram.com"
-                  class="nav-link"
-                  target="_blank"
-                >
-                  <img
-                    class="mx-2"
-                    src="@/assets/Icons/instagram_White.png"
-                    alt=""
-                    width="25"
-                  />
-                </a>
-                <a
-                  href="https://www.twitter.com"
-                  class="nav-link"
-                  target="_blank"
-                >
-                  <img
-                    class="mx-2"
-                    src="@/assets/Icons/Twitter - White .png"
-                    alt=""
-                    width="25"
-                  />
-                </a>
-              </div>
-            </div>
-            <div
-              class="contentFooter col-xxl-8 float-xl-end d-flex col-sm-12 flex-sm-wrap flex-xl-nowrap justify-content-between text-white"
-              style="padding: 7%"
-            >
-              <div
-                class="d-flex flex-column justify-content-between text-start col-sm-12 col-md-9 col-lg-5 my-sm-2"
-              >
-                <div class="h1 mt-3 footer-items">Home</div>
-                <div class="h4 mt-3 footer-items" style="color: #e6ca69">
-                  About Us
-                </div>
-                <div class="h4 mt-3 footer-items" style="color: #e6ca69">
-                  Media Center
-                </div>
-                <div class="h4 mt-3 footer-items" style="color: #e6ca69">
-                  Contact Us
-                </div>
-              </div>
-              <div
-                class="d-flex flex-wrap flex-sm-column justify-content-between col-4 text-start"
-              >
-                <div
-                  class="h4 mt-3 footer-items"
-                  style="color: #e6ca69"
-                  @click="GoToCategory('elec')"
-                >
-                  Electronics
-                </div>
-                <div
-                  class="h4 mt-3 footer-items"
-                  style="color: #e6ca69"
-                  @click="GoToCategory('jewel')"
-                >
-                  Jweelry
-                </div>
-                <div
-                  class="h4 mt-3 footer-items"
-                  style="color: #e6ca69"
-                  @click="GoToCategory('men')"
-                >
-                  Men Clothing
-                </div>
-                <div
-                  class="h4 mt-3 footer-items"
-                  style="color: #e6ca69"
-                  @click="GoToCategory('women')"
-                >
-                  Women Clothing
-                </div>
-              </div>
-              <div
-                class="d-flex flex-column justify-content-between text-start ms-xl-5 col-sm-12 col-md-5 col-lg-4"
-              >
-                <div class="h1 mt-3 footer-items">Contact Us</div>
-                <div class="h4 mt-3 footer-items" style="color: #e6ca69">
-                  +971 56 715 5150
-                </div>
-                <div class="h4 mt-3 footer-items" style="color: #e6ca69">
-                  +971 4 832 2253
-                </div>
-                <div class="h4 mt-3 footer-items" style="color: #e6ca69">
-                  info@almotthedon.com
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="down mt-5">
-            <div class="w-100 bg-white" style="height: 2px"></div>
-            <div class="text-center text-white my-3">
-              <span>&copy;Al Motthedon 2024. All Rights Reserved.</span>
-            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <div class="container py-5">
+      <h2 class="section-title text-center mb-5">Featured Products</h2>
+      <div v-if="loading" class="text-center py-5">
+        <div class="loading-container">
+          <div class="loading-spinner"></div>
+          <p class="loading-text">Loading featured products...</p>
+        </div>
+      </div>
+      <div v-else class="row g-4">
+        <div
+          v-for="product in displayedProducts"
+          :key="product.id"
+          class="col-lg-3 col-md-4 col-sm-6"
+        >
+          <div
+            class="product-card animate-fade-in"
+            @click="goToProduct(product.id)"
+          >
+            <div class="product-img-wrap">
+              <img
+                :src="product.image"
+                :alt="product.title"
+                class="product-img"
+              />
+            </div>
+            <div class="product-info">
+              <h6 class="product-title">
+                {{ product.title.substring(0, 40) }}
+              </h6>
+              <div class="product-price">AED {{ product.price }}</div>
+              <div class="product-rating">
+                <span class="stars">&#9733;</span>
+                {{ product.rating?.rate }} ({{ product.rating?.count }})
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        v-if="!loading && products.length > initialDisplayCount"
+        class="text-center mt-4"
+      >
+        <button
+          @click="showMoreProducts"
+          class="btn show-more-btn"
+          :disabled="displayedProducts.length >= products.length"
+        >
+          {{
+            displayedProducts.length >= products.length
+              ? "No More Products"
+              : "Show More"
+          }}
+        </button>
+      </div>
+    </div>
+
+    <div class="container py-5 animate-on-scroll">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <img
+            src="@/assets/Images/portrait-young-woman-with-earrings-with-gems-isolated.jpg"
+            class="img-fluid rounded-4"
+          />
+        </div>
+        <div class="col-lg-6 mt-4 mt-lg-0">
+          <h2 class="section-title" style="color: #e6ca69">
+            Luxury Jewelry Collection
+          </h2>
+          <p class="text-white-50 lh-lg">
+            Discover our exquisite handcrafted jewelry pieces, designed to make
+            every moment special. From timeless diamonds to contemporary gold
+            designs.
+          </p>
+          <router-link to="/category?cat=jewelery" class="btn hero-btn"
+            >Explore Collection</router-link
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="container py-5 mt-4 animate-on-scroll">
+      <h2 class="section-title text-center mb-5">Categories</h2>
+      <div class="row g-3">
+        <div v-for="cat in categories" :key="cat.name" class="col-md-3 col-6">
+          <div class="category-card" @click="goToCategory(cat.slug)">
+            <div class="category-icon">{{ cat.icon }}</div>
+            <div class="category-name">{{ cat.name }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer-section">
+      <div class="container py-5">
+        <div class="row g-4">
+          <div class="col-lg-4">
+            <img src="@/assets/logo2 - Copy.png" height="80" class="mb-3" />
+            <p class="text-white-50">
+              Premium quality products for discerning customers.
+            </p>
+          </div>
+          <div class="col-lg-2 col-md-4">
+            <h6 class="footer-title">Shop</h6>
+            <router-link to="/category?cat=electronics" class="footer-link"
+              >Electronics</router-link
+            >
+            <router-link to="/category?cat=jewelery" class="footer-link"
+              >Jewelry</router-link
+            >
+            <router-link to="/category?cat=men's clothing" class="footer-link"
+              >Men Clothing</router-link
+            >
+            <router-link to="/category?cat=women's clothing" class="footer-link"
+              >Women Clothing</router-link
+            >
+          </div>
+          <div class="col-lg-2 col-md-4">
+            <h6 class="footer-title">Account</h6>
+            <router-link to="/login" class="footer-link">Login</router-link>
+            <router-link to="/register" class="footer-link"
+              >Register</router-link
+            >
+            <router-link to="/orders" class="footer-link"
+              >My Orders</router-link
+            >
+          </div>
+          <div class="col-lg-4 col-md-4">
+            <h6 class="footer-title">Contact</h6>
+            <p class="text-white-50 mb-1">+971 56 715 5150</p>
+            <p class="text-white-50 mb-1">info@almotthedon.com</p>
+            <div class="d-flex gap-2 mt-3">
+              <a href="#" class="social-link"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" class="social-link"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+        </div>
+        <hr class="border-secondary my-4" />
+        <p class="text-center text-white-50 mb-0">
+          &copy; Al Motthedon 2024. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
   </div>
 </template>
 
 <script>
+import { productsAPI } from "@/utils/api";
+
 export default {
   name: "HomeView",
-  mounted() {
-    window.addEventListener("resize", this.getScreen);
-  },
   data() {
     return {
-      thisNUmber: null,
-      screen: window.innerWidth,
-      isInput: false,
-      isFixed: false,
+      products: [],
+      loading: true,
+      initialDisplayCount: 8,
+      displayedProducts: [],
+      categories: [
+        { name: "Electronics", slug: "electronics", icon: "🔌" },
+        { name: "Jewelry", slug: "jewelery", icon: "💎" },
+        { name: "Men Clothing", slug: "men's clothing", icon: "👔" },
+        { name: "Women Clothing", slug: "women's clothing", icon: "👗" },
+      ],
     };
   },
-  updated() {
-    console.log(this.screen);
+  async mounted() {
+    try {
+      this.products = await productsAPI.getAll();
+      this.displayedProducts = this.products.slice(0, this.initialDisplayCount);
+    } catch (err) {
+      console.error(err);
+    }
+    this.loading = false;
+    this.initScrollAnimations();
   },
   methods: {
-    getScreen() {
-      this.screen = window.innerWidth;
+    goToProduct(id) {
+      this.$router.push(`/product/${id}`);
     },
+    goToCategory(slug) {
+      this.$router.push(`/category?cat=${encodeURIComponent(slug)}`);
+    },
+    showMoreProducts() {
+      const currentLength = this.displayedProducts.length;
+      const nextBatch = this.products.slice(
+        currentLength,
+        currentLength + this.initialDisplayCount,
+      );
+      this.displayedProducts = [...this.displayedProducts, ...nextBatch];
+    },
+    initScrollAnimations() {
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
 
-    GoToCategory(category) {
-      this.$store.state.CurrentCategory = category;
-      this.$router.push({ name: "category" });
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate");
+          }
+        });
+      }, observerOptions);
+
+      // Observe all animate-on-scroll elements
+      this.$nextTick(() => {
+        const elements = this.$el.querySelectorAll(".animate-on-scroll");
+        elements.forEach((el) => observer.observe(el));
+      });
     },
   },
 };
 </script>
-<style scoped>
-.item:hover {
-  cursor: pointer;
-  color: black;
-}
-.roboto {
-  font-family: "Roboto Flex", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
-}
-.btn-hover:hover {
-  color: black;
-  background-color: #e6ca69;
-  border-color: black;
-}
-.category {
-  font-family: "Marcellus", serif;
-  font-weight: 400;
-  font-style: normal;
-}
-.footer-items {
-  font-family: "Marcellus", serif;
-  font-style: normal;
-  font-weight: 400;
-}
-.footer-items:hover {
-  color: #e6ca69;
-  cursor: pointer;
-}
-.h11 {
-  font-size: 65px;
-}
-.middle-title {
-  font-family: "Marcellus", serif;
-  font-weight: 400;
-  font-style: normal;
-}
-.d1 {
-  text-align: center;
-}
 
-.header-3 {
+<style scoped>
+.hero-section {
+  height: 600px;
+}
+.hero-img {
+  height: 600px;
   object-fit: cover;
 }
-
-.pointOne {
-  transition-duration: 0.2s;
-  transition-behavior: smooth;
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.95),
+    rgba(0, 0, 0, 0.6)
+  );
+  display: flex;
+  align-items: center;
 }
-.navBarLink {
+.hero-text {
+  max-width: 500px;
+  padding-left: 50px;
+}
+.hero-text h1 {
+  color: #e6ca69;
+  font-family: "Playfair Display", serif;
+  font-size: 4rem;
+  margin-bottom: 8px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+.hero-text p {
+  color: #ccc;
+  font-size: 1.2rem;
+  margin-bottom: 24px;
+  font-weight: 300;
+}
+.hero-btn {
+  background: #e6ca69;
+  color: black;
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+}
+.hero-btn:hover {
+  background: #d4b850;
+  color: black;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(230, 202, 105, 0.3);
+}
+.section-title {
+  color: #e6ca69;
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+}
+.section-title {
+  color: #e6ca69;
+  font-family: "Marcellus", serif;
+}
+.product-card {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 100%;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+.product-card:hover {
+  border-color: #e6ca69;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(230, 202, 105, 0.1);
+}
+.product-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.product-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.product-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.product-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.product-card:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.product-card:nth-child(6) {
+  animation-delay: 0.6s;
+}
+.product-card:nth-child(7) {
+  animation-delay: 0.7s;
+}
+.product-card:nth-child(8) {
+  animation-delay: 0.8s;
+}
+.product-img-wrap {
+  background: white;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 220px;
+}
+.product-img {
+  max-height: 180px;
+  max-width: 100%;
+  object-fit: contain;
+}
+.product-info {
+  padding: 16px;
+}
+.product-title {
   color: white;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
 }
-.navBarLink:hover {
+.product-price {
+  color: #e6ca69;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+.product-rating {
+  color: #888;
+  font-size: 0.8rem;
+}
+.stars {
+  color: #f1c40f;
+}
+.category-card {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 16px;
+  padding: 30px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.category-card:hover {
+  border-color: #e6ca69;
+  transform: scale(1.05);
+}
+.category-icon {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+.category-name {
+  color: white;
+  font-weight: 600;
+}
+.footer-section {
+  background: #111;
+  border-top: 1px solid #222;
+}
+.footer-title {
+  color: #e6ca69;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+.footer-link {
+  display: block;
+  color: #888;
+  text-decoration: none;
+  padding: 4px 0;
+  font-size: 0.9rem;
+}
+.footer-link:hover {
   color: #e6ca69;
 }
-.item {
-  font-size: x-large;
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: #222;
+  border-radius: 50%;
+  color: #ccc;
+  text-decoration: none;
+  transition: all 0.2s;
 }
-/* Media Queries */
+.show-more-btn {
+  background: #e6ca69;
+  color: black;
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-weight: 600;
+  border: none;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+.show-more-btn:hover:not(:disabled) {
+  background: #d4b850;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(230, 202, 105, 0.3);
+}
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #333;
+  border-top: 4px solid #e6ca69;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+.loading-text {
+  color: #e6ca69;
+  font-size: 1rem;
+  margin: 0;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+.animate-on-scroll.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
 @media (max-width: 768px) {
-  .item {
-    max-height: 100px;
-    font-size: medium;
+  .hero-section,
+  .hero-img {
+    height: 400px;
   }
-  @media (max-width: 768px) {
-    .contFooter {
-      font-weight: 100;
-    }
-  }
-}
-@media (max-width: 575px) {
-  .images-footer {
-    width: 50%;
-  }
-  .contentFooter {
-    padding-left: 50px;
-    width: 100%;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .h11 {
-    font-size: 20px;
-  }
-  .item {
-    height: 120px;
-    width: 120px;
-    font-size: x-small;
-  }
-  .title {
-    font-size: large;
-  }
-  .btn-hover {
-    width: 100%;
-  }
-  .lorem {
-    font-size: medium;
-  }
-  .imageTitle {
-    padding: 0;
-    align-self: center;
-  }
-  .middle-title {
-    font-weight: 200;
-  }
-  .logoImage {
-    width: 200px;
+  .hero-text h1 {
+    font-size: 2.5rem;
   }
 }
 </style>

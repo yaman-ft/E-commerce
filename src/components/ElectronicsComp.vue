@@ -54,8 +54,7 @@ export default {
         });
     },
     showDetiels(id) {
-      this.$router.push({ name: "showproduct" });
-      this.$store.state.CurrentProduct = id;
+      this.$router.push({ name: "product", params: { id } });
     },
   },
 };

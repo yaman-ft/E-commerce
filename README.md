@@ -1,17 +1,25 @@
 # E-Commerce Platform - ALMOTTHEDON
 
-Full-stack e-commerce application built with **Vue 3** (frontend) and **Node.js + Express + SQLite** (backend).
+Full-stack e-commerce application built with **Vue 3** (frontend) and **Node.js + Express** (backend).
+
+- **Local development:** SQLite via `better-sqlite3`
+- **Vercel deployment:** PostgreSQL via `@neondatabase/serverless`
 
 ## Project Structure
 
 ```
+├─ api/              # Vercel serverless function entry
+│  ├─ index.js       # Serverless handler (imports backend/server.js)
+│  └─ package.json   # Production deps for Vercel
 ├─ backend/          # Express API server
 │  ├─ controllers/   # Route handlers
 │  ├─ middleware/     # JWT auth middleware
 │  ├─ routes/        # API route definitions
-│  ├─ database.js    # SQLite setup
+│  ├─ database.js    # Database abstraction (SQLite local / Neon on Vercel)
+│  ├─ schema.js      # PostgreSQL-compatible table creation
 │  ├─ seed.js        # Database seeder
-│  ├─ server.js      # Entry point
+│  ├─ server.js      # Entry point (exports app, auto-creates tables + seeds)
+│  ├─ package.json   # Dev + production deps
 │  └─ .env           # Environment variables
 ├─ src/              # Vue 3 frontend
 │  ├─ views/         # Page components
@@ -20,6 +28,7 @@ Full-stack e-commerce application built with **Vue 3** (frontend) and **Node.js 
 │  ├─ store/         # Vuex state management
 │  └─ utils/         # API helper
 ├─ public/           # Static assets
+├─ vercel.json       # Vercel deployment config
 └─ package.json      # Frontend dependencies
 ```
 
@@ -40,7 +49,7 @@ Full-stack e-commerce application built with **Vue 3** (frontend) and **Node.js 
 - Node.js >= 18
 - npm
 
-## Setup & Run
+## Local Development
 
 ### 1. Backend
 
@@ -56,12 +65,58 @@ npm start        # Starts on http://localhost:5000
 ```bash
 # From project root
 npm install
-npm run serve    # Starts on http://localhost:8080
+npm run serve    # Starts on http://localhost:3000 (proxies /api to :5000)
 ```
 
 ### 3. Open in Browser
 
-Visit **http://localhost:8080**
+Visit **http://localhost:3000**
+
+## Deploy to Vercel
+
+### Prerequisites
+
+1. [Vercel account](https://vercel.com)
+2. [Neon PostgreSQL database](https://neon.tech) (free tier: 256 MB)
+
+### Steps
+
+1. **Push to GitHub**
+
+```bash
+git init
+git add .
+git commit -m "Initial commit"
+git remote add origin <your-repo-url>
+git push -u origin main
+```
+
+2. **Import project in Vercel Dashboard**
+
+   - Click "Add New → Project"
+   - Import your GitHub repository
+   - Framework preset: **Vue.js** (detected automatically)
+   - Root directory: `./` (default)
+
+3. **Set environment variables**
+
+   In Vercel Dashboard → Project Settings → Environment Variables:
+
+   | Name           | Value                                      |
+   |----------------|--------------------------------------------|
+   | `JWT_SECRET`   | (your secret key)                          |
+   | `DATABASE_URL` | (your Neon PostgreSQL connection string)   |
+
+4. **Deploy**
+
+   Click "Deploy". Vercel will:
+   - Build the Vue frontend (`npm run build`)
+   - Deploy the serverless function at `api/index.js`
+   - Auto-create tables & seed data on first request
+
+5. **Visit your site**
+
+   Your app will be available at `https://<your-project>.vercel.app`
 
 ## Default Admin Account
 
@@ -71,7 +126,7 @@ Visit **http://localhost:8080**
 
 ## Environment Variables
 
-Backend (`backend/.env`):
+### Local – Backend (`backend/.env`)
 
 | Variable     | Default                        | Description          |
 |-------------|--------------------------------|----------------------|
@@ -79,7 +134,14 @@ Backend (`backend/.env`):
 | JWT_SECRET  | your_jwt_secret_key_change...  | JWT signing key      |
 | DB_PATH     | ./database.sqlite              | SQLite file path     |
 
-Frontend (`VUE_APP_API_URL`): defaults to `http://localhost:5000/api`
+### Production – Vercel Dashboard
+
+| Name           | Description                           |
+|----------------|---------------------------------------|
+| `JWT_SECRET`   | JWT signing key (same as local)       |
+| `DATABASE_URL` | Neon PostgreSQL connection string     |
+
+`VERCEL=true` is set automatically by Vercel and detected in code.
 
 ## API Endpoints
 
@@ -179,5 +241,5 @@ curl -X POST http://localhost:5000/api/orders \
 ## Tech Stack
 
 - **Frontend:** Vue 3, Vue Router, Vuex, Bootstrap 5, Font Awesome
-- **Backend:** Node.js, Express, better-sqlite3, JWT, bcryptjs
-- **Database:** SQLite
+- **Backend:** Node.js, Express, JWT, bcryptjs
+- **Database:** SQLite (local) / PostgreSQL via Neon (Vercel)

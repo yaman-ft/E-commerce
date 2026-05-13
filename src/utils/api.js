@@ -1,5 +1,4 @@
-// استخدم Vercel backend على الإنتاج، و localhost على التطوير
-const API_BASE = process.env.VUE_APP_API_URL || "https://e-commerce-phi-six-80.vercel.app/api";
+const API_BASE = "/api";
 
 function getToken() {
   return localStorage.getItem("token");

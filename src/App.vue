@@ -30,28 +30,28 @@
             </li>
             <li class="nav-item">
               <router-link
-                to="/category?cat=electronics"
+                :to="{ path: '/category', query: { cat: 'electronics' } }"
                 class="nav-link nav-link-custom"
                 >Electronics</router-link
               >
             </li>
             <li class="nav-item">
               <router-link
-                to="/category?cat=jewelery"
+                :to="{ path: '/category', query: { cat: 'jewelery' } }"
                 class="nav-link nav-link-custom"
                 >Jewelry</router-link
               >
             </li>
             <li class="nav-item">
               <router-link
-                to="/category?cat=men's clothing"
+                :to="{ path: '/category', query: { cat: 'men\'s clothing' } }"
                 class="nav-link nav-link-custom"
                 >Men</router-link
               >
             </li>
             <li class="nav-item">
               <router-link
-                to="/category?cat=women's clothing"
+                :to="{ path: '/category', query: { cat: 'women\'s clothing' } }"
                 class="nav-link nav-link-custom"
                 >Women</router-link
               >
@@ -150,7 +150,7 @@
               </li>
               <li class="nav-item">
                 <router-link
-                  to="/category?cat=electronics"
+                  :to="{ path: '/category', query: { cat: 'electronics' } }"
                   class="nav-link nav-link-custom"
                   @click="closeOffcanvas"
                   >Electronics</router-link
@@ -158,7 +158,7 @@
               </li>
               <li class="nav-item">
                 <router-link
-                  to="/category?cat=jewelery"
+                  :to="{ path: '/category', query: { cat: 'jewelery' } }"
                   class="nav-link nav-link-custom"
                   @click="closeOffcanvas"
                   >Jewelry</router-link
@@ -166,7 +166,7 @@
               </li>
               <li class="nav-item">
                 <router-link
-                  to="/category?cat=men's clothing"
+                  :to="{ path: '/category', query: { cat: 'men\'s clothing' } }"
                   class="nav-link nav-link-custom"
                   @click="closeOffcanvas"
                   >Men</router-link
@@ -174,7 +174,7 @@
               </li>
               <li class="nav-item">
                 <router-link
-                  to="/category?cat=women's clothing"
+                  :to="{ path: '/category', query: { cat: 'women\'s clothing' } }"
                   class="nav-link nav-link-custom"
                   @click="closeOffcanvas"
                   >Women</router-link

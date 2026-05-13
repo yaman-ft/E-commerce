@@ -46,16 +46,23 @@ export default {
     return { products: [], loading: true, currentCategory: "" };
   },
   async mounted() {
-    const cat = this.$route.query.cat || "electronics";
-    this.currentCategory = cat;
-    try {
-      this.products = await productsAPI.getAll(cat);
-    } catch (err) {
-      console.error(err);
-    }
-    this.loading = false;
+    await this.loadCategory();
+  },
+  watch: {
+    "$route.query.cat": "loadCategory",
   },
   methods: {
+    async loadCategory() {
+      this.loading = true;
+      const cat = this.$route.query.cat || "electronics";
+      this.currentCategory = cat;
+      try {
+        this.products = await productsAPI.getAll(cat);
+      } catch (err) {
+        console.error(err);
+      }
+      this.loading = false;
+    },
     goToProduct(id) {
       this.$router.push(`/product/${id}`);
     },

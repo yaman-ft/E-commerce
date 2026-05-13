@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const { getDb } = require("./db");
 const { parseEvent, authenticate, response } = require("./utils");
 
-exports.handler = async (event, context) => {
+exports.handler = async (event) => {
   try {
     if (event.httpMethod === "OPTIONS") {
       return response(200, {});

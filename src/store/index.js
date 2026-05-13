@@ -36,7 +36,8 @@ export default createStore({
     async fetchCartCount({ commit, state }) {
       if (!state.token) return;
       try {
-        const res = await fetch("http://localhost:5000/api/cart", {
+        // استخدم رابط نسبي يعمل على localhost و Netlify
+        const res = await fetch("/api/cart", {
           headers: { Authorization: `Bearer ${state.token}` },
         });
         const data = await res.json();

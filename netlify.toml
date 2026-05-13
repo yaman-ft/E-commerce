@@ -1,0 +1,27 @@
+[build]
+  # مجلد الفرونتend المبني
+  publish = "dist"
+  # مجلد دوال Netlify Functions
+  functions = "netlify/functions"
+  # أوامر البناء
+  command = "npm run build"
+
+# إعادة توجيه الطلبات من /api/* إلى الدوال
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# تجنب الأخطاء 404 للمسارات الديناميكية (SPA)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# CORS headers
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type, Authorization"

@@ -1,0 +1,11 @@
+{
+  "name": "for-business-functions",
+  "version": "1.0.0",
+  "description": "Netlify Functions for e-commerce API",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^11.0.0",
+    "dotenv": "^16.4.5",
+    "jsonwebtoken": "^9.0.2"
+  }
+}

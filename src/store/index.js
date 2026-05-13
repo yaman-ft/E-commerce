@@ -37,7 +37,9 @@ export default createStore({
       if (!state.token) return;
       try {
         // استخدم Vercel backend على الإنتاج
-        const API_BASE = process.env.VUE_APP_API_URL || "https://e-commerce-phi-six-80.vercel.app/api";
+        const API_BASE =
+          process.env.VUE_APP_API_URL ||
+          "https://e-commerce-phi-six-80.vercel.app/api";
         const res = await fetch(`${API_BASE}/cart`, {
           headers: { Authorization: `Bearer ${state.token}` },
         });

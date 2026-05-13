@@ -100,7 +100,7 @@
       <div class="row g-3">
         <div v-for="cat in categories" :key="cat.name" class="col-md-3 col-6">
           <div class="category-card" @click="goToCategory(cat.slug)">
-            <div class="category-icon">{{ cat.icon }}</div>
+            <div class="category-badge">{{ cat.label }}</div>
             <div class="category-name">{{ cat.name }}</div>
           </div>
         </div>
@@ -178,10 +178,10 @@ export default {
       initialDisplayCount: 8,
       displayedProducts: [],
       categories: [
-        { name: "Electronics", slug: "electronics", icon: "🔌" },
-        { name: "Jewelry", slug: "jewelery", icon: "💎" },
-        { name: "Men Clothing", slug: "men's clothing", icon: "👔" },
-        { name: "Women Clothing", slug: "women's clothing", icon: "👗" },
+        { name: "Electronics", slug: "electronics", label: "EL" },
+        { name: "Jewelry", slug: "jewelery", label: "JE" },
+        { name: "Men Clothing", slug: "men's clothing", label: "MN" },
+        { name: "Women Clothing", slug: "women's clothing", label: "WM" },
       ],
     };
   },
@@ -256,47 +256,61 @@ export default {
   display: flex;
   align-items: center;
 }
+.hero-overlay .container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
 .hero-text {
-  max-width: 500px;
+  max-width: 520px;
   padding-left: 50px;
+  animation: heroReveal 1s ease-out forwards;
+  opacity: 0;
+  transform: translateY(24px);
 }
 .hero-text h1 {
   color: #e6ca69;
   font-family: "Playfair Display", serif;
-  font-size: 4rem;
-  margin-bottom: 8px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  font-size: 4.8rem;
+  margin-bottom: 12px;
+  letter-spacing: 0.12em;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.85);
 }
 .hero-text p {
-  color: #ccc;
-  font-size: 1.2rem;
-  margin-bottom: 24px;
-  font-weight: 300;
+  color: #e3e3e3;
+  font-family: "Inter", sans-serif;
+  font-size: 1.35rem;
+  margin-bottom: 28px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
 }
 .hero-btn {
   background: #e6ca69;
   color: black;
-  padding: 12px 32px;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 0.3s ease;
+  padding: 14px 34px;
+  border-radius: 10px;
+  font-weight: 700;
+  transition: all 0.25s ease;
   border: none;
 }
 .hero-btn:hover {
   background: #d4b850;
   color: black;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(230, 202, 105, 0.3);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 18px rgba(230, 202, 105, 0.28);
 }
 .section-title {
   color: #e6ca69;
   font-family: "Playfair Display", serif;
-  font-weight: 700;
-  font-size: 2.5rem;
+  font-weight: 800;
+  font-size: 2.8rem;
+  letter-spacing: 0.08em;
 }
-.section-title {
-  color: #e6ca69;
-  font-family: "Marcellus", serif;
+@keyframes heroReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 .product-card {
   background: #1a1a1a;
@@ -374,25 +388,46 @@ export default {
   color: #f1c40f;
 }
 .category-card {
-  background: #1a1a1a;
-  border: 1px solid #333;
-  border-radius: 16px;
-  padding: 30px 20px;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 25, 20, 0.95),
+    rgba(15, 15, 15, 0.95)
+  );
+  border: 1px solid rgba(230, 202, 105, 0.2);
+  border-radius: 24px;
+  padding: 32px 20px;
   text-align: center;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .category-card:hover {
   border-color: #e6ca69;
-  transform: scale(1.05);
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(230, 202, 105, 0.12);
 }
-.category-icon {
-  font-size: 3rem;
-  margin-bottom: 10px;
+.category-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: rgba(230, 202, 105, 0.15);
+  color: #e6ca69;
+  font-weight: 700;
+  letter-spacing: 0.15em;
 }
 .category-name {
   color: white;
-  font-weight: 600;
+  font-weight: 700;
+  font-family: "Playfair Display", serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
 }
 .footer-section {
   background: #111;
@@ -482,6 +517,33 @@ export default {
   opacity: 1;
   transform: translateY(0);
 }
+@media (max-width: 992px) {
+  .hero-section,
+  .hero-img {
+    height: 520px;
+  }
+  .hero-overlay .container {
+    justify-content: center;
+    padding: 0 20px;
+  }
+  .hero-text {
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+  }
+  .hero-text h1 {
+    font-size: 3.4rem;
+  }
+  .hero-text p {
+    font-size: 1.15rem;
+    margin-bottom: 22px;
+  }
+  .hero-btn {
+    margin: 0 auto;
+  }
+}
+
 @media (max-width: 768px) {
   .hero-section,
   .hero-img {

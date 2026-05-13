@@ -81,14 +81,22 @@ export default {
     };
   },
   async mounted() {
-    try {
-      this.product = await productsAPI.get(this.$route.params.id);
-    } catch (err) {
-      console.error(err);
-    }
-    this.loading = false;
+    await this.loadProduct();
+  },
+  watch: {
+    "$route.params.id": "loadProduct",
   },
   methods: {
+    async loadProduct() {
+      this.loading = true;
+      try {
+        this.product = await productsAPI.get(this.$route.params.id);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        this.loading = false;
+      }
+    },
     async addToCart() {
       if (!this.$store.getters.isAuthenticated) {
         this.$router.push("/login");
@@ -97,7 +105,8 @@ export default {
       this.adding = true;
       this.error = "";
       try {
-        await cartAPI.add(this.product.id, this.quantity);
+        const quantity = Math.max(1, Number(this.quantity) || 1);
+        await cartAPI.add(this.product.id, quantity);
         this.$store.dispatch("showToast", {
           message: `${this.product.title.substring(0, 20)}... added to cart!`,
         });

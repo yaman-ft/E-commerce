@@ -29,7 +29,7 @@
               <div class="d-flex align-items-center">
                 <button
                   class="btn btn-sm btn-dark"
-                  @click="updateQty(item.id, -1)"
+                  @click="updateQty(item.product_id, -1)"
                   :disabled="item.quantity <= 1"
                 >
                   -
@@ -37,7 +37,7 @@
                 <span class="mx-3 text-white">{{ item.quantity }}</span>
                 <button
                   class="btn btn-sm btn-dark"
-                  @click="updateQty(item.id, 1)"
+                  @click="updateQty(item.product_id, 1)"
                 >
                   +
                 </button>

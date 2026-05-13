@@ -36,8 +36,9 @@ export default createStore({
     async fetchCartCount({ commit, state }) {
       if (!state.token) return;
       try {
-        // استخدم رابط نسبي يعمل على localhost و Netlify
-        const res = await fetch("/api/cart", {
+        // استخدم Vercel backend على الإنتاج
+        const API_BASE = "/api";
+        const res = await fetch(`${API_BASE}/cart`, {
           headers: { Authorization: `Bearer ${state.token}` },
         });
         const data = await res.json();

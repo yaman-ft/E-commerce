@@ -1,4 +1,3 @@
-// استخدم روابط نسبية للعمل على localhost و Netlify
 const API_BASE = "/api";
 
 function getToken() {

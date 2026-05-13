@@ -1,66 +1,66 @@
-const Database = require('better-sqlite3');
-const path = require('path');
-require('dotenv').config({ path: path.join(__dirname, '.env') });
+const path = require("path");
+require("dotenv").config({ path: path.join(__dirname, ".env") });
 
-const dbPath = process.env.DB_PATH || './database.sqlite';
-const db = new Database(path.join(__dirname, dbPath));
+let db;
 
-db.pragma('journal_mode = WAL');
-db.pragma('foreign_keys = ON');
+if (process.env.VERCEL) {
+  const { neon } = require("@neondatabase/serverless");
+  const sql = neon(process.env.DATABASE_URL);
 
-db.exec(`
-  CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    email TEXT UNIQUE NOT NULL,
-    password TEXT NOT NULL,
-    role TEXT DEFAULT 'user',
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-  );
+  // Convert ? placeholders to $1, $2, ... for PostgreSQL
+  function convertParams(query, params) {
+    let idx = 0;
+    const text = query.replace(/\?/g, () => `$${++idx}`);
+    return { text, params };
+  }
 
-  CREATE TABLE IF NOT EXISTS products (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title TEXT NOT NULL,
-    price REAL NOT NULL,
-    description TEXT,
-    category TEXT,
-    image TEXT,
-    rating_rate REAL DEFAULT 0,
-    rating_count INTEGER DEFAULT 0,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
-  );
+  db = {
+    all: async (query, params = []) => {
+      const { text, params: args } = convertParams(query, params);
+      return await sql(text, args);
+    },
+    get: async (query, params = []) => {
+      const { text, params: args } = convertParams(query, params);
+      const rows = await sql(text, args);
+      return rows[0] || null;
+    },
+    run: async (query, params = []) => {
+      const isInsert = query.trim().toUpperCase().startsWith("INSERT");
+      let finalQuery = query;
+      if (isInsert && !query.toUpperCase().includes("RETURNING")) {
+        finalQuery = query + " RETURNING id";
+      }
+      const { text, params: args } = convertParams(finalQuery, params);
+      const rows = await sql(text, args);
+      return { lastID: rows[0]?.id || null, changes: rows.length };
+    },
+    exec: async (query) => {
+      const { text } = convertParams(query, []);
+      await sql(text);
+    },
+  };
+} else {
+  const Database = require("better-sqlite3");
+  const dbPath = process.env.DB_PATH || "./database.sqlite";
+  const sqliteDb = new Database(path.join(__dirname, dbPath));
+  sqliteDb.pragma("journal_mode = WAL");
+  sqliteDb.pragma("foreign_keys = ON");
 
-  CREATE TABLE IF NOT EXISTS cart_items (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER NOT NULL,
-    product_id INTEGER NOT NULL,
-    quantity INTEGER DEFAULT 1,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
-  );
-
-  CREATE TABLE IF NOT EXISTS orders (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER NOT NULL,
-    total REAL NOT NULL,
-    status TEXT DEFAULT 'pending',
-    address TEXT NOT NULL,
-    payment_method TEXT NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-  );
-
-  CREATE TABLE IF NOT EXISTS order_items (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    order_id INTEGER NOT NULL,
-    product_id INTEGER NOT NULL,
-    quantity INTEGER NOT NULL,
-    price REAL NOT NULL,
-    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
-    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
-  );
-`);
+  db = {
+    all: (query, params = []) =>
+      Promise.resolve(sqliteDb.prepare(query).all(...params)),
+    get: (query, params = []) =>
+      Promise.resolve(sqliteDb.prepare(query).get(...params)),
+    run: (query, params = []) => {
+      const stmt = sqliteDb.prepare(query);
+      const result = stmt.run(...params);
+      return Promise.resolve({
+        lastID: result.lastInsertRowid,
+        changes: result.changes,
+      });
+    },
+    exec: (query) => Promise.resolve(sqliteDb.exec(query)),
+  };
+}
 
 module.exports = db;

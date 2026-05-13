@@ -27,34 +27,47 @@ project-root/
 ## ما تم تحديثه
 
 ### 1. ✅ `src/utils/api.js`
+
 تم تغيير الرابط من:
+
 ```javascript
 const API_BASE = "http://localhost:5000/api";
 ```
+
 إلى:
+
 ```javascript
 const API_BASE = "/api";
 ```
+
 **الفائدة**: تعمل الروابط النسبية على localhost والإنترنت بنفس الطريقة.
 
 ### 2. ✅ `src/store/index.js`
+
 تم تغيير الـ fetch من:
+
 ```javascript
 const res = await fetch("http://localhost:5000/api/cart", ...);
 ```
+
 إلى:
+
 ```javascript
 const res = await fetch("/api/cart", ...);
 ```
 
 ### 3. ✅ `netlify.toml`
+
 تم إضافة تكوين Netlify الذي يقوم بـ:
+
 - توجيه جميع طلبات `/api/*` إلى Netlify Functions
 - إعادة توجيه المسارات الديناميكية للـ SPA (Single Page Application)
 - إضافة CORS headers
 
 ### 4. ✅ `netlify/functions/`
+
 تم إنشاء دوال Netlify للـ endpoints:
+
 - `products.js` - GET/POST/PUT/DELETE المنتجات
 - `users.js` - التسجيل والدخول وملف المستخدم
 - `cart.js` - إدارة السلة
@@ -89,6 +102,7 @@ netlify dev
 ### 3. تشغيل الواجهة الأمامية فقط (بدون الـ backend)
 
 إذا أردت تشغيل Vue فقط، استخدم:
+
 ```bash
 npm run serve
 ```
@@ -119,6 +133,7 @@ npm run build
 ### 3. متغيرات البيئة على Netlify
 
 اذهب إلى **Site settings → Environment** وأضف:
+
 ```
 JWT_SECRET = your_secure_secret_key_here
 NODE_ENV = production
@@ -128,11 +143,13 @@ NODE_ENV = production
 
 ### 4. قاعدة البيانات
 
-⚠️ **ملاحظة مهمة**: 
+⚠️ **ملاحظة مهمة**:
+
 - Netlify Functions بدون ذاكرة دائمة (لا يمكن حفظ ملفات).
 - `better-sqlite3` سيعمل في `/tmp` ولكن البيانات ستُفقد عند إعادة التشغيل.
 
 **الحل الأمثل**: استخدم قاعدة بيانات سحابية:
+
 - MongoDB Atlas (مجاني)
 - Firebase Firestore
 - Supabase (PostgreSQL)
@@ -148,18 +165,21 @@ NODE_ENV = production
 ## الخطوات التالية المهمة
 
 ### أولوية عالية:
+
 - [ ] غير `JWT_SECRET` إلى شيء آمن جداً
 - [ ] اختبر التطبيق محلياً مع `netlify dev`
 - [ ] حول قاعدة البيانات إلى MongoDB أو خدمة سحابية أخرى
 - [ ] أضف `.env` إلى `.gitignore` (لا تنشر المفاتيح السرية!)
 
 ### أولوية متوسطة:
+
 - [ ] أضف معالجة أخطاء أفضل
 - [ ] أضف logging للـ functions
 - [ ] اختبر جميع الـ endpoints على Netlify
 - [ ] حسّن أداء الدوال (بطء البدء البارد)
 
 ### أولوية منخفضة:
+
 - [ ] احذف مجلد `backend` إذا لم تعد تستخدمه
 - [ ] أضف اختبارات تلقائية
 - [ ] حسّن سياسات CORS إذا لزم الأمر
@@ -186,23 +206,29 @@ curl -X POST http://localhost:8888/api/users/register \
 
 ## حل المشاكل الشائعة
 
-### ❌ "Functions not found" 
+### ❌ "Functions not found"
+
 **الحل**: تأكد من أن مجلد `netlify/functions` موجود والملفات داخله.
 
 ### ❌ "CORS error"
+
 **الحل**: تحقق من أن `netlify.toml` موجود ويحتوي على CORS headers.
 
 ### ❌ "Cannot find module 'better-sqlite3'"
+
 **الحل**: شغّل `npm install` في مجلد `netlify/functions`:
+
 ```bash
 cd netlify/functions
 npm install
 ```
 
 ### ❌ "Token expired or invalid"
+
 **الحل**: تحقق من أن `JWT_SECRET` نفسه على Netlify وفي `.env`.
 
 ### ❌ "Database errors in production"
+
 **الحل**: انتقل إلى MongoDB أو قاعدة بيانات سحابية (SQLite لا يعمل على Netlify).
 
 ## الأوامر المفيدة
@@ -227,12 +253,14 @@ netlify status
 ## ملاحظات نهائية
 
 ✅ **تم**:
+
 - تحويل Endpoints من Express إلى Netlify Functions
 - تحديث الفرونت لاستخدام روابط نسبية
 - إنشاء `netlify.toml` لإعادة التوجيه
 - إضافة CORS headers
 
 ⚠️ **تذكر**:
+
 - Netlify Functions لا تحافظ على البيانات المحفوظة محلياً
 - استخدم قاعدة بيانات سحابية للإنتاج
 - غيّر `JWT_SECRET` قبل النشر

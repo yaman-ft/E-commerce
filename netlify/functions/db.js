@@ -1,8 +1,10 @@
-const Database = require('better-sqlite3');
-const path = require('path');
+const Database = require("better-sqlite3");
+const path = require("path");
 
 // على Netlify، نستخدم مجلد tmp للقراءة والكتابة
-const dbPath = process.env.DB_PATH ? path.resolve(process.env.DB_PATH) : path.join('/tmp', 'database.sqlite');
+const dbPath = process.env.DB_PATH
+  ? path.resolve(process.env.DB_PATH)
+  : path.join("/tmp", "database.sqlite");
 
 let db;
 
@@ -10,9 +12,9 @@ function getDb() {
   if (!db) {
     try {
       db = new Database(dbPath);
-      db.pragma('journal_mode = WAL');
-      db.pragma('foreign_keys = ON');
-      
+      db.pragma("journal_mode = WAL");
+      db.pragma("foreign_keys = ON");
+
       db.exec(`
         CREATE TABLE IF NOT EXISTS users (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -68,7 +70,7 @@ function getDb() {
         );
       `);
     } catch (error) {
-      console.error('Database initialization error:', error);
+      console.error("Database initialization error:", error);
       throw error;
     }
   }

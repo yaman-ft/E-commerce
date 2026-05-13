@@ -23,25 +23,33 @@ netlify dev
 في terminal آخر (جديد):
 
 ### 1. فحص صحة الـ API
+
 ```bash
 curl http://localhost:8888/api/health
 ```
+
 **النتيجة المتوقعة:**
+
 ```json
-{"status":"ok","message":"API is running"}
+{ "status": "ok", "message": "API is running" }
 ```
 
 ### 2. احصل على جميع المنتجات
+
 ```bash
 curl http://localhost:8888/api/products
 ```
+
 **النتيجة المتوقعة:**
+
 ```json
 []
 ```
+
 (مصفوفة فارغة في البداية، أو منتجات إذا كانت موجودة)
 
 ### 3. التسجيل (قم بإنشاء حساب)
+
 ```bash
 curl -X POST http://localhost:8888/api/users/register \
   -H "Content-Type: application/json" \
@@ -51,7 +59,9 @@ curl -X POST http://localhost:8888/api/users/register \
     "password": "password123"
   }'
 ```
+
 **النتيجة المتوقعة:**
+
 ```json
 {
   "user": {
@@ -63,9 +73,11 @@ curl -X POST http://localhost:8888/api/users/register \
   "token": "eyJhbGciOiJIUzI1NiIsInR..."
 }
 ```
+
 **احفظ Token! ستحتاجه.**
 
 ### 4. الدخول (استخدم نفس البيانات)
+
 ```bash
 curl -X POST http://localhost:8888/api/users/login \
   -H "Content-Type: application/json" \
@@ -74,9 +86,11 @@ curl -X POST http://localhost:8888/api/users/login \
     "password": "password123"
   }'
 ```
+
 **النتيجة المتوقعة:** نفس الـ token
 
 ### 5. إضافة منتج (يحتاج admin)
+
 ```bash
 TOKEN="your_token_here"
 
@@ -95,6 +109,7 @@ curl -X POST http://localhost:8888/api/products \
 ```
 
 ### 6. إضافة للسلة (يحتاج token)
+
 ```bash
 TOKEN="your_token_here"
 
@@ -108,13 +123,16 @@ curl -X POST http://localhost:8888/api/cart \
 ```
 
 ### 7. الحصول على السلة
+
 ```bash
 TOKEN="your_token_here"
 
 curl http://localhost:8888/api/cart \
   -H "Authorization: Bearer $TOKEN"
 ```
+
 **النتيجة المتوقعة:**
+
 ```json
 {
   "items": [
@@ -189,6 +207,7 @@ echo "✅ الاختبار انتهى!"
 ```
 
 **لتشغيل السكريبت:**
+
 ```bash
 chmod +x test-api.sh
 ./test-api.sh
@@ -197,33 +216,41 @@ chmod +x test-api.sh
 ## 🔍 اختبار من المتصفح
 
 ### 1. افتح الموقع
+
 ```
 http://localhost:8888
 ```
 
 ### 2. افتح DevTools (F12)
+
 اضغط Ctrl+Shift+K (أو Cmd+Option+K على Mac)
 
 ### 3. اختبر في Console
+
 ```javascript
 // احصل على المنتجات
-fetch('/api/products').then(r => r.json()).then(console.log)
+fetch("/api/products")
+  .then((r) => r.json())
+  .then(console.log);
 
 // التسجيل
-fetch('/api/users/register', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
+fetch("/api/users/register", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
-    name: 'أحمد',
-    email: 'ahmed@example.com',
-    password: 'password123'
-  })
-}).then(r => r.json()).then(console.log)
+    name: "أحمد",
+    email: "ahmed@example.com",
+    password: "password123",
+  }),
+})
+  .then((r) => r.json())
+  .then(console.log);
 ```
 
 ## 🆘 حل المشاكل
 
 ### ❌ "Cannot find module"
+
 ```bash
 # تأكد من تثبيت الـ dependencies
 cd netlify/functions
@@ -232,29 +259,34 @@ cd ../..
 ```
 
 ### ❌ "Port 8888 already in use"
+
 ```bash
 # استخدم port مختلف
 netlify dev --port 3000
 ```
 
 ### ❌ "404 Not Found"
+
 - تأكد من `netlify.toml` موجود
 - تأكد من ملفات functions موجودة
 - شغّل `netlify dev --verbose` للمزيد من التفاصيل
 
 ### ❌ "JWT errors"
+
 ```bash
 # تأكد من `.env` يحتوي على JWT_SECRET
 cat .env | grep JWT_SECRET
 ```
 
 ### ❌ "CORS errors"
+
 - تأكد من المتصفح يرسل requests إلى `/api/...` و ليس `localhost:5000`
 - جرّب في private window
 
 ## 📊 Expected Results
 
 بعد اختبارات ناجحة، يجب أن ترى:
+
 - ✅ `/api/health` يعيد `{"status":"ok"}`
 - ✅ `/api/products` يعيد قائمة منتجات
 - ✅ `/api/users/register` ينشئ حساب جديد ويعيد token

@@ -32,6 +32,7 @@
 ## 🚀 الخطوات الفورية (الآن!)
 
 ### الخطوة 1: اختبر محلياً
+
 ```bash
 # تثبيت Netlify CLI (لو لم تكن مثبتة)
 npm install -g netlify-cli
@@ -43,7 +44,9 @@ netlify dev
 ```
 
 ### الخطوة 2: اختبر الـ endpoints
+
 من terminal جديد:
+
 ```bash
 # فحص صحة الـ API
 curl http://localhost:8888/api/health
@@ -56,6 +59,7 @@ curl http://localhost:8888/api/health
 ## 🔧 الخطوات القادمة (في الأيام القادمة)
 
 ### ❶ أنشئ MongoDB (مهم جداً!)
+
 1. اذهب إلى https://www.mongodb.com/cloud/atlas
 2. أنشئ Cluster مجاني
 3. احصل على Connection String
@@ -64,6 +68,7 @@ curl http://localhost:8888/api/health
 **تفاصيل**: راجع `MONGODB_SETUP.md`
 
 ### ❷ ادفع إلى GitHub
+
 ```bash
 git add .
 git commit -m "Convert to Netlify Functions"
@@ -71,6 +76,7 @@ git push origin main
 ```
 
 ### ❸ انشر على Netlify
+
 1. اذهب إلى https://app.netlify.com
 2. اختر "New site from Git"
 3. اختر repository
@@ -79,7 +85,9 @@ git push origin main
 **تفاصيل**: راجع `NETLIFY_SETUP.md`
 
 ### ❹ أضف متغيرات البيئة على Netlify
+
 في **Site settings → Environment**, أضف:
+
 ```
 JWT_SECRET = your_secure_key_here
 MONGODB_URI = your_mongodb_connection_string
@@ -123,19 +131,20 @@ for-business/
 
 ## 🎯 ماذا تعني كل خطوة
 
-| الخطوة | الوصف | الحالة |
-|-------|-------|--------|
-| Netlify Functions | بدل Express Server | ✅ تم |
-| Relative URLs | `/api/*` بدل `localhost:5000` | ✅ تم |
-| netlify.toml | تكوين Netlify | ✅ تم |
-| CORS Headers | تسمح بالـ requests | ✅ تم |
-| اختبار محلي | `netlify dev` | ⏳ الآن |
-| MongoDB | قاعدة بيانات سحابية | ⏳ التالي |
-| النشر | على Netlify | ⏳ لاحقاً |
+| الخطوة            | الوصف                         | الحالة    |
+| ----------------- | ----------------------------- | --------- |
+| Netlify Functions | بدل Express Server            | ✅ تم     |
+| Relative URLs     | `/api/*` بدل `localhost:5000` | ✅ تم     |
+| netlify.toml      | تكوين Netlify                 | ✅ تم     |
+| CORS Headers      | تسمح بالـ requests            | ✅ تم     |
+| اختبار محلي       | `netlify dev`                 | ⏳ الآن   |
+| MongoDB           | قاعدة بيانات سحابية           | ⏳ التالي |
+| النشر             | على Netlify                   | ⏳ لاحقاً |
 
 ## 💡 ملاحظات مهمة
 
 ### ✨ المميزات الجديدة
+
 - ✅ تعمل على `localhost:8888` محلياً
 - ✅ تعمل على `yoursite.netlify.app` بدون تعديلات
 - ✅ نفس الكود يعمل في المكانين (لا تكرار)
@@ -143,6 +152,7 @@ for-business/
 - ✅ Serverless functions (بدون صيانة خوادم)
 
 ### ⚠️ تنبيهات مهمة
+
 - ❗ **SQLite**: لا يعمل على Netlify في الإنتاج، استخدم MongoDB
 - ❗ **JWT_SECRET**: اجعله قوياً جداً قبل النشر
 - ❗ **Environment**: أضف المتغيرات على Netlify site
@@ -150,13 +160,13 @@ for-business/
 
 ## 📖 الملفات التي يجب أن تقرأها
 
-| وضعك | ابدأ من |
-|-----|--------|
-| 🆕 جديد على Netlify | `QUICK_START.md` |
-| 👨‍💻 أريد التفاصيل الكاملة | `NETLIFY_SETUP.md` |
-| 🧪 أريد الاختبار الآن | `TESTING_GUIDE.md` |
+| وضعك                     | ابدأ من                     |
+| ------------------------ | --------------------------- |
+| 🆕 جديد على Netlify      | `QUICK_START.md`            |
+| 👨‍💻 أريد التفاصيل الكاملة | `NETLIFY_SETUP.md`          |
+| 🧪 أريد الاختبار الآن    | `TESTING_GUIDE.md`          |
 | ✅ أريد التحقق من كل شيء | `VERIFICATION_CHECKLIST.md` |
-| 🗄️ أريد استخدام MongoDB | `MONGODB_SETUP.md` |
+| 🗄️ أريد استخدام MongoDB  | `MONGODB_SETUP.md`          |
 
 ## 🎁 الملفات الإضافية
 

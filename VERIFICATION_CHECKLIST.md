@@ -52,6 +52,7 @@ curl http://localhost:8888/api/health
 ### 🌐 الإعدادات على Netlify
 
 عندما تنشر على Netlify:
+
 - [ ] **Build command**: `npm run build` ✅
 - [ ] **Publish directory**: `dist` ✅
 - [ ] **Functions directory**: `netlify/functions` ✅
@@ -98,6 +99,7 @@ curl http://localhost:8888/api/cart \
 ### 🐛 حل المشاكل
 
 **❌ "Cannot find module"**
+
 ```bash
 # تأكد من تثبيت dependencies
 cd netlify/functions
@@ -105,20 +107,24 @@ npm install
 ```
 
 **❌ "EADDRINUSE: address already in use"**
+
 ```bash
 # الـ port 8888 مشغول، غيّره:
 netlify dev --port 3000
 ```
 
 **❌ "Database errors"**
+
 - أنشئ MongoDB cluster
 - أضف MONGODB_URI إلى .env و Netlify environment
 
 **❌ "Unauthorized/401"**
+
 - تأكد من أن Token يُمرر في Authorization header
 - تحقق من أن JWT_SECRET موجود في .env
 
 **❌ "CORS errors"**
+
 - تأكد من أن `netlify.toml` يحتوي على CORS headers
 - جرّب في private window لمسح cookies
 
@@ -159,6 +165,7 @@ https://your-site.netlify.app
 ---
 
 إذا واجهت مشكلة:
+
 1. راجع `NETLIFY_SETUP.md` للتفاصيل
 2. تحقق من console في المتصفح للأخطاء
 3. استخدم `netlify dev --verbose` للمزيد من المعلومات

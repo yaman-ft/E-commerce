@@ -44,7 +44,7 @@ export default createStore({
         if (data.items) {
           commit(
             "SET_CART_COUNT",
-            data.items.reduce((sum, it) => sum + it.quantity, 0)
+            data.items.reduce((sum, it) => sum + it.quantity, 0),
           );
         }
       } catch (err) {

@@ -41,6 +41,7 @@
 1. في الـ Cluster، اختر "Connect"
 2. اختر "Connect your application"
 3. انسخ الـ connection string (مثال):
+
 ```
 mongodb+srv://username:password@cluster.mongodb.net/?retryWrites=true&w=majority
 ```
@@ -57,7 +58,7 @@ mongodb+srv://username:password@cluster.mongodb.net/?retryWrites=true&w=majority
 استبدل محتوى الملف بـ:
 
 ```javascript
-const { MongoClient } = require('mongodb');
+const { MongoClient } = require("mongodb");
 
 let client;
 let db;
@@ -67,43 +68,43 @@ async function getDb() {
 
   const uri = process.env.MONGODB_URI;
   if (!uri) {
-    throw new Error('MONGODB_URI environment variable not set');
+    throw new Error("MONGODB_URI environment variable not set");
   }
 
   try {
     client = new MongoClient(uri);
     await client.connect();
-    db = client.db('ecommerce');
-    
+    db = client.db("ecommerce");
+
     // إنشاء collections إذا لم تكن موجودة
     const collections = await db.listCollections().toArray();
-    const collectionNames = collections.map(c => c.name);
+    const collectionNames = collections.map((c) => c.name);
 
-    if (!collectionNames.includes('users')) {
-      await db.createCollection('users');
-      await db.collection('users').createIndex({ email: 1 }, { unique: true });
+    if (!collectionNames.includes("users")) {
+      await db.createCollection("users");
+      await db.collection("users").createIndex({ email: 1 }, { unique: true });
     }
 
-    if (!collectionNames.includes('products')) {
-      await db.createCollection('products');
+    if (!collectionNames.includes("products")) {
+      await db.createCollection("products");
     }
 
-    if (!collectionNames.includes('cart_items')) {
-      await db.createCollection('cart_items');
+    if (!collectionNames.includes("cart_items")) {
+      await db.createCollection("cart_items");
     }
 
-    if (!collectionNames.includes('orders')) {
-      await db.createCollection('orders');
+    if (!collectionNames.includes("orders")) {
+      await db.createCollection("orders");
     }
 
-    if (!collectionNames.includes('order_items')) {
-      await db.createCollection('order_items');
+    if (!collectionNames.includes("order_items")) {
+      await db.createCollection("order_items");
     }
 
-    console.log('Connected to MongoDB');
+    console.log("Connected to MongoDB");
     return db;
   } catch (error) {
-    console.error('MongoDB connection error:', error);
+    console.error("MongoDB connection error:", error);
     throw error;
   }
 }
@@ -148,7 +149,7 @@ const db = await getDb();
 // const products = db.prepare('SELECT * FROM products').all();
 
 // استخدم:
-const products = await db.collection('products').find({}).toArray();
+const products = await db.collection("products").find({}).toArray();
 ```
 
 ## إعادة كتابة جميع Functions لـ MongoDB
@@ -160,32 +161,35 @@ const products = await db.collection('products').find({}).toArray();
 بدلاً من استخدام MongoDB Driver مباشرة، استخدم Mongoose:
 
 ```javascript
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
   name: String,
   email: { type: String, unique: true },
   password: String,
-  role: { type: String, default: 'user' },
-  createdAt: { type: Date, default: Date.now }
+  role: { type: String, default: "user" },
+  createdAt: { type: Date, default: Date.now },
 });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model("User", userSchema);
 ```
 
 ## خيارات بديلة
 
 ### Firebase
+
 ```
 npm install firebase-admin
 ```
 
 ### Supabase (PostgreSQL)
+
 ```
 npm install @supabase/supabase-js
 ```
 
 ### PlanetScale (MySQL)
+
 ```
 npm install mysql2
 ```

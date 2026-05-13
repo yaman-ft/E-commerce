@@ -149,9 +149,9 @@ netlify builds:list
 
 ```javascript
 // في الـ functions، استخدم:
-process.env.JWT_SECRET
-process.env.MONGODB_URI
-process.env.NODE_ENV
+process.env.JWT_SECRET;
+process.env.MONGODB_URI;
+process.env.NODE_ENV;
 ```
 
 ```bash
@@ -194,18 +194,22 @@ npm cache clean --force
 // اختبر في Console:
 
 // 1. احصل على المنتجات
-fetch('/api/products').then(r => r.json()).then(console.log)
+fetch("/api/products")
+  .then((r) => r.json())
+  .then(console.log);
 
 // 2. سجّل
-fetch('/api/users/register', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
+fetch("/api/users/register", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
-    name: 'أحمد',
-    email: 'ahmed@test.com',
-    password: 'password123'
-  })
-}).then(r => r.json()).then(console.log)
+    name: "أحمد",
+    email: "ahmed@test.com",
+    password: "password123",
+  }),
+})
+  .then((r) => r.json())
+  .then(console.log);
 ```
 
 ---
@@ -319,10 +323,10 @@ npm install && npm run build && netlify dev
 
 ```javascript
 // قديم ❌
-fetch('http://localhost:5000/api/products')
+fetch("http://localhost:5000/api/products");
 
 // جديد ✅
-fetch('/api/products')
+fetch("/api/products");
 
 // محلي: http://localhost:8888/api/products
 // أونلاين: https://yoursite.netlify.app/api/products

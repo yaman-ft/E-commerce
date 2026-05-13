@@ -3,21 +3,23 @@
 ## ✅ تم إنجازه
 
 ### 1. **إنشاء Netlify Functions** ✅
+
 تم إنشاء مجلد `netlify/functions/` مع 7 ملفات:
 
-| الملف | الوصف |
-|------|-------|
-| `products.js` | GET/POST/PUT/DELETE للمنتجات |
-| `users.js` | التسجيل والدخول وملف المستخدم |
-| `cart.js` | إدارة السلة |
-| `orders.js` | إنشاء والحصول على الطلبات |
-| `health.js` | فحص صحة الـ API |
-| `db.js` | إعداد قاعدة البيانات |
-| `utils.js` | دوال مساعدة (auth, CORS, response) |
+| الملف         | الوصف                              |
+| ------------- | ---------------------------------- |
+| `products.js` | GET/POST/PUT/DELETE للمنتجات       |
+| `users.js`    | التسجيل والدخول وملف المستخدم      |
+| `cart.js`     | إدارة السلة                        |
+| `orders.js`   | إنشاء والحصول على الطلبات          |
+| `health.js`   | فحص صحة الـ API                    |
+| `db.js`       | إعداد قاعدة البيانات               |
+| `utils.js`    | دوال مساعدة (auth, CORS, response) |
 
 ### 2. **تحديث الفرونت** ✅
 
 **ملفات محدثة:**
+
 - ✅ `src/utils/api.js` - روابط نسبية `/api/...`
 - ✅ `src/store/index.js` - روابط نسبية للسلة
 
@@ -25,25 +27,26 @@
 
 ### 3. **إنشاء ملفات التكوين** ✅
 
-| الملف | الهدف |
-|------|-------|
-| `netlify.toml` | إعدادات البناء والـ redirects و CORS |
-| `netlify/functions/package.json` | Dependencies للـ functions |
-| `.env.example` | قالب للمتغيرات البيئية |
-| `.gitignore` | لا تنشر `.env` و `node_modules` |
+| الملف                            | الهدف                                |
+| -------------------------------- | ------------------------------------ |
+| `netlify.toml`                   | إعدادات البناء والـ redirects و CORS |
+| `netlify/functions/package.json` | Dependencies للـ functions           |
+| `.env.example`                   | قالب للمتغيرات البيئية               |
+| `.gitignore`                     | لا تنشر `.env` و `node_modules`      |
 
 ### 4. **إنشاء التوثيق الكامل** ✅
 
-| الملف | المحتوى |
-|------|---------|
-| `NETLIFY_SETUP.md` | شرح تفصيلي كامل (2000+ كلمة) |
-| `MONGODB_SETUP.md` | كيفية الانتقال من SQLite إلى MongoDB |
-| `QUICK_START.md` | خطوات سريعة للبدء |
-| `VERIFICATION_CHECKLIST.md` | قائمة فحص شاملة |
+| الملف                       | المحتوى                              |
+| --------------------------- | ------------------------------------ |
+| `NETLIFY_SETUP.md`          | شرح تفصيلي كامل (2000+ كلمة)         |
+| `MONGODB_SETUP.md`          | كيفية الانتقال من SQLite إلى MongoDB |
+| `QUICK_START.md`            | خطوات سريعة للبدء                    |
+| `VERIFICATION_CHECKLIST.md` | قائمة فحص شاملة                      |
 
 ## 🔄 كيفية يعمل الآن
 
 ### محلياً (مع Netlify Dev):
+
 ```
 Browser → http://localhost:8888 → Vue App (dist/)
                                  ↓
@@ -56,6 +59,7 @@ Browser → http://localhost:8888 → Vue App (dist/)
 ```
 
 ### على الإنترنت (Netlify):
+
 ```
 Browser → https://yoursite.netlify.app → Vue App (dist/)
                                         ↓
@@ -70,6 +74,7 @@ Browser → https://yoursite.netlify.app → Vue App (dist/)
 ## 📊 المقارنة
 
 ### قبل التحويل ❌
+
 ```
 Frontend → http://localhost:5000/api/*
                     ↓
@@ -77,9 +82,11 @@ Frontend → http://localhost:5000/api/*
                     ↓
             SQLite Database (محلي)
 ```
+
 **المشكلة**: لا يعمل على الإنترنت!
 
 ### بعد التحويل ✅
+
 ```
 Frontend → /api/* (روابط نسبية)
                     ↓
@@ -89,21 +96,25 @@ Frontend → /api/* (روابط نسبية)
                     ↓
             MongoDB (سحابي) أو SQLite
 ```
+
 **الفائدة**: يعمل على localhost و Netlify و أي domain!
 
 ## 🚀 الخطوات التالية
 
 ### فوري (هذا اليوم):
+
 1. اختبر محلياً: `netlify dev`
 2. تحقق من الـ endpoints تعمل
 3. حل أي أخطاء console
 
 ### قريب جداً (غداً):
+
 1. أنشئ MongoDB cluster (مجاني)
 2. حدّث `.env` مع MONGODB_URI
 3. اختبر مع MongoDB
 
 ### قبل النشر:
+
 1. ادفع الكود إلى GitHub
 2. أنشئ site جديد على Netlify
 3. أضف JWT_SECRET و MONGODB_URI
@@ -144,15 +155,19 @@ for-business/
 ## 🔑 المفاهيم المهمة
 
 ### 1. **Netlify Redirects**
+
 ```toml
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
 ```
+
 هذا يحول `/api/products` إلى `/.netlify/functions/products`
 
 ### 2. **Serverless Functions**
+
 بدلاً من `app.listen(5000)`:
+
 ```javascript
 exports.handler = async (event, context) => {
   // يُستدعى كل طلب API
@@ -161,38 +176,45 @@ exports.handler = async (event, context) => {
 ```
 
 ### 3. **Relative URLs**
+
 ```javascript
 // قديم ❌
-fetch("http://localhost:5000/api/products")
+fetch("http://localhost:5000/api/products");
 
 // جديد ✅
-fetch("/api/products")
+fetch("/api/products");
 ```
 
 ### 4. **CORS Headers**
+
 ```toml
 [headers.values]
   Access-Control-Allow-Origin = "*"
 ```
+
 آمن للـ SPA في Netlify
 
 ## ⚠️ ملاحظات مهمة
 
 ### SQLite على Netlify
+
 - ❌ لا يعمل للإنتاج (بيانات فقط في `/tmp`)
 - ✅ استخدم MongoDB بدلاً منها
 
 ### JWT_SECRET
+
 - ❌ لا تستخدم "secret" أو كلمات عادية
 - ✅ استخدم شيء قوي مثل: `uP8@kL2$mN9!xQ4*vR7&wT3%jY6#hZ1`
 
 ### Environment Variables
+
 - ❌ لا تضع قيم في الكود
 - ✅ استخدم .env و Netlify environment
 
 ## 🎯 النتيجة النهائية
 
 بعد اتباع هذه الخطوات، موقعك سيكون:
+
 - ✅ يعمل محلياً مع `netlify dev`
 - ✅ يعمل على الإنترنت مع Netlify
 - ✅ له API كامل مع المصادقة
@@ -203,15 +225,19 @@ fetch("/api/products")
 ## 📞 هل تحتاج مساعدة؟
 
 ### للمبتدئين:
+
 ابدأ بـ `QUICK_START.md`
 
 ### للمتقدمين:
+
 اقرأ `NETLIFY_SETUP.md`
 
 ### للمشاكل التقنية:
+
 استخدم `VERIFICATION_CHECKLIST.md`
 
 ### لقاعدة البيانات:
+
 اتبع `MONGODB_SETUP.md`
 
 ---

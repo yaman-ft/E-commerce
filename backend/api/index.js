@@ -24,7 +24,7 @@ app.get("/api/health", (req, res) => {
   res.json({ status: "ok", message: "API is running" });
 });
 
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   console.error(err.stack);
   res.status(500).json({ message: "Something went wrong!" });
 });

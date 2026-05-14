@@ -10,7 +10,7 @@ const cartRoutes = require("./routes/cart");
 const orderRoutes = require("./routes/orders");
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+// const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
@@ -25,22 +25,23 @@ app.get("/api/health", (req, res) => {
   res.json({ status: "ok", message: "API is running" });
 });
 
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   console.error(err.stack);
   res.status(500).json({ message: "Something went wrong!" });
 });
 
-const server = app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+  // const server = app.listen(PORT, () => {
+  //   console.log(`Server running on http://localhost:${PORT}`);
+  // });
 
-server.on("error", (error) => {
-  if (error.code === "EADDRINUSE") {
-    console.error(
-      `Port ${PORT} is already in use. Either stop the process using this port or set a different PORT in backend/.env.`,
-    );
-  } else {
-    console.error("Server error:", error);
-  }
-  process.exit(1);
-});
+// server.on("error", (error) => {
+//   if (error.code === "EADDRINUSE") {
+//     console.error(
+//       `Port ${PORT} is already in use. Either stop the process using this port or set a different PORT in backend/.env.`,
+//     );
+//   } else {
+//     console.error("Server error:", error);
+//   }
+//   process.exit(1);
+// });
+module.exports = app;

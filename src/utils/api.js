@@ -1,5 +1,5 @@
-// استخدم روابط نسبية للعمل على localhost و Netlify
-const API_BASE = "/api";
+// استخدم متغير بيئة للـ API base، افتراضياً نسبي للمحلي أو Netlify
+const API_BASE = process.env.VUE_APP_API_BASE || "/api";
 
 function getToken() {
   return localStorage.getItem("token");
